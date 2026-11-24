@@ -1,0 +1,46 @@
+/* App screen styles. */
+.screen-app {
+  position: absolute;
+  left: 8.6%;
+  top: 8.4%;
+  width: 82.4%;
+  height: 36.27%;
+  border-radius: 11% / 16%;
+  overflow: hidden;
+  container-type: size;
+  color: #12332c;
+  font-weight: 700;
+}
+.screen-app canvas { width: 100%; height: 100%; display: block; }
+.screen-app button { font-family: inherit; color: inherit; }
+
+/* Menu */
+.menu { height: 100%; padding: 0 3cqw; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5cqw; align-content: center; }
+.tile {
+  padding: 5cqh 0;
+  border: 3px solid #111; border-radius: 12px;
+  background: rgba(255, 255, 255, 0.55);
+  font-size: 7cqh;
+  cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; gap: 2cqh;
+}
+.tile.selected { background: #ffd34d; transform: scale(1.06); }
+.icon { width: 19cqh; height: 19cqh; }
+
+/* Gallery */
+.gallery { width: 100%; height: 100%; cursor: pointer; }
+.gallery img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Music player */
+.music { height: 100%; padding: 0 5cqw; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3cqh; text-align: center; }
+.music-icon .icon { width: 24cqh; height: 24cqh; }
+.music-icon.bounce { animation: bounce 0.5s ease-in-out infinite alternate; }
+@keyframes bounce { to { transform: translateY(-5cqh) rotate(-6deg); } }
+.track-name { font-size: 9cqh; line-height: 1.1; }
+.bars { height: 22cqh; width: 60cqw; display: flex; align-items: flex-end; gap: 1.5cqw; }
+.bars span { flex: 1; border: 2px solid #111; border-radius: 4px 4px 0 0; transition: height 0.15s; }
+.dots { display: flex; gap: 2cqw; }
+.dots i { width: 4cqh; height: 4cqh; border: 2px solid #111; border-radius: 50%; background: #fff; }
+.dots i.on { background: #ef3e4a; }
+.music small { font-size: 6cqh; opacity: 0.8; }
+@media (prefers-reduced-motion: reduce) { .music-icon.bounce { animation: none; } }

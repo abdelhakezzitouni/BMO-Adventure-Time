@@ -1,0 +1,46 @@
+/* Responsive BMO body. */
+.bmo-wrap {
+  --w: max(200px, min(72vw, calc((100svh - 150px) / 1.82), 420px));
+  position: relative;
+  width: var(--w);
+  margin-bottom: calc(var(--w) * 0.3); /* Leave room for legs. */
+  filter: drop-shadow(0 10px 0 rgba(0, 0, 0, 0.16));
+}
+/* Shrink BMO during the tour. */
+.touring .bmo-wrap { --w: max(170px, min(72vw, calc((100svh - 340px) / 1.82), 420px)); }
+@media (orientation: landscape) and (max-height: 560px) {
+  .bmo-wrap, .touring .bmo-wrap { --w: max(130px, calc((100svh - 110px) / 1.82)); }
+}
+.bmo-body { position: relative; }
+.bmo-svg { width: 100%; height: auto; display: block; user-select: none; -webkit-user-select: none; touch-action: manipulation; }
+
+.limbs { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.limb-outline { fill: none; stroke: #111; stroke-width: 13; stroke-linecap: round; stroke-linejoin: round; }
+.limb-fill { fill: none; stroke: #5aa8a0; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+.limb-end { fill: #5aa8a0; stroke: #111; stroke-width: 4.5; }
+
+/* Sway arms. */
+.arm { animation: arm-sway 3.2s ease-in-out infinite alternate; }
+.arm.right { animation-delay: -1.6s; }
+@keyframes arm-sway { from { transform: rotate(-2.5deg); } to { transform: rotate(2.5deg); } }
+
+.btn { cursor: pointer; transform-box: fill-box; transform-origin: center; transition: transform 0.08s; }
+.btn:hover { transform: scale(1.05); }
+.btn:active, .btn.pressed { transform: scale(0.9); }
+.btn:focus-visible { outline: none; }
+.btn:focus-visible > * { stroke: #fff; stroke-width: 8; }
+
+/* Tour highlight styles. */
+.tour-layer { animation: fade 0.25s ease-out; }
+.tour-ring { transform-box: fill-box; transform-origin: center; animation: ring-pulse 0.9s ease-in-out infinite alternate; }
+@keyframes ring-pulse { from { transform: scale(1); opacity: 0.75; } to { transform: scale(1.07); opacity: 1; } }
+.tour-arrow { animation: arrow-bounce 0.55s ease-in-out infinite alternate; }
+@keyframes arrow-bounce { from { transform: translateX(0); } to { transform: translateX(-14px); } }
+
+.bmo-wrap.dance { animation: dance 0.5s ease-in-out 6; }
+@keyframes dance {
+  0%, 100% { transform: rotate(0); }
+  25% { transform: rotate(-4deg) translateY(-8px); }
+  75% { transform: rotate(4deg) translateY(-8px); }
+}
+@media (prefers-reduced-motion: reduce) { .bmo-wrap.dance, .tour-layer, .tour-ring, .tour-arrow, .arm { animation: none; } }
